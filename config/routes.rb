@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  get "/mutters", to: "mutters#index"
+  get "/posts", to: "posts#index"
 end
