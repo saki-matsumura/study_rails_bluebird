@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   def index
-    @post = Post.all
+    @posts = Post.all
   end
 
   def new
@@ -11,9 +11,16 @@ class PostsController < ApplicationController
   end
 
   def create
+    @post = Post.new(post_params)
+    if @post.save
+      redirect_to posts_path, notice: "ポストしました！"
+    else
+      render :new
+    end
   end
 
   def confirm #メモ：確認ページ
+    # @post = Post.new(post_params)
   end
 
   def update
@@ -24,11 +31,11 @@ class PostsController < ApplicationController
 
   private
 
-  def posts_params
-    params.require(:posts).permit(:content)
+  def post_params
+    params.require(:post).permit(:content)
   end
 
   def set_post
-    @post = Post.find(params[:content])
+    @post = Post.find(params[:id])
   end
 end
