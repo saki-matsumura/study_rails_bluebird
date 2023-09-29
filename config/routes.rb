@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   resources :posts do
+    collection do
+      post :confirm
+    end
   end
-  # get "/posts", to: "posts#index"
 end

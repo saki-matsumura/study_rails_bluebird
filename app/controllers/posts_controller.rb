@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
+
   def index
     @posts = Post.all
   end
@@ -12,6 +14,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    # binding.irb
     if @post.save
       redirect_to posts_path, notice: "ポストしました！"
     else
@@ -20,7 +23,7 @@ class PostsController < ApplicationController
   end
 
   def confirm #メモ：確認ページ
-    # @post = Post.new(post_params)
+    @post = Post.new(post_params)
   end
 
   def update
