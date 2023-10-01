@@ -14,7 +14,6 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    # binding.irb
     if @post.save
       redirect_to posts_path, notice: "ポストしました！"
     else
@@ -27,9 +26,16 @@ class PostsController < ApplicationController
   end
 
   def update
+    if @post.update(post_params)
+      redirect_to posts_path, notice: "編集が完了しました！"
+    else
+      render :edit
+    end
   end
 
   def destroy
+    @post.destroy
+    redirect_to posts_path, notice: "投稿を削除しました！"
   end
 
   private
