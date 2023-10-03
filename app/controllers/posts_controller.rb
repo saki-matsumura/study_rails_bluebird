@@ -12,19 +12,22 @@ class PostsController < ApplicationController
   def show
   end
 
-  def confirm #メモ：確認ページ
+  def confirm
     @post = Post.new(post_params)
   end
 
   def create
     @post = Post.new(post_params)
 
-    if params[:back] || !@post.save
+    if params[:back]
       render :new
     else
-      redirect_to posts_path, notice: "ポストしました！"
+      if @post.save
+        redirect_to posts_path, notice: "ポストしました！"
+      else
+        render :new
+      end
     end
-
   end
 
   def update
