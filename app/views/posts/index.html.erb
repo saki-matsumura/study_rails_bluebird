@@ -1,13 +1,9 @@
 <h2>ホーム画面</h2>
 
-<%= link_to 'ポストする', new_post_path %>
+<p><%= notice %></p>
 
-<table>
-  <tr>
-     <td><p>つぶやき</p></td>
-  </tr>
+<%= link_to '新しくポストする', new_post_path %>
 
-</table>
 <table>
   <% @posts.each do |post| %>
     <tr>
